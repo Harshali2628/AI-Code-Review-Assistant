@@ -65,14 +65,22 @@ Generate and download a professional PDF report containing code analysis results
 
 ## 📂 Project Structure
 
-```
+```text
 AI-Code-Review-Assistant/
 │── app.py
 │── requirements.txt
 │── README.md
-│── assets/
-│── utils/
-│── sample_codes/
+│── .gitignore
+│
+├── assets/
+│
+├── screenshots/
+│
+├── sample_codes/
+│
+├── utils/
+│
+└── reports/                  # Generated PDF reports (created at runtime)
 ```
 
 ## ⚙️ Installation
