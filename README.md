@@ -1,3 +1,8 @@
+## 🔗 Links
+
+- **Live Demo:** https://your-app-name.streamlit.app
+- **GitHub Repository:** https://github.com/Harshali2628/AI-Code-Review-Assistant
+
 # 🤖 AI Code Review Assistant
 
 An AI-powered code review application that analyzes Python code using static analysis tools and Gemini AI. The application provides code quality insights, security analysis, complexity metrics, AI-generated reviews, refactored code suggestions, and downloadable PDF reports.
