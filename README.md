@@ -1,6 +1,6 @@
 ## 🔗 Links
 
-- **Live Demo:** https://your-app-name.streamlit.app
+- **Live Demo:** (https://ai-code-review-assistant-7dwvew6j4ebfvk8mb6avhb.streamlit.app/)
 - **GitHub Repository:** https://github.com/Harshali2628/AI-Code-Review-Assistant
 
 # 🤖 AI Code Review Assistant
