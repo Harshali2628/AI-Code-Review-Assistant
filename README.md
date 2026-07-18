@@ -20,6 +20,38 @@ An AI-powered code review application that analyzes Python code using static ana
 - ✅ Downloadable PDF Report
 - ✅ Interactive Streamlit Dashboard
 
+## 📸 Application Screenshots
+
+### 🏠 Home Page
+
+A modern and intuitive landing page showcasing the AI Code Review Assistant with an overview of supported features and an easy-to-use interface.
+
+![Home Page](screenshots/home.png)
+
+---
+
+### 📊 Code Analysis Dashboard
+
+Comprehensive dashboard displaying code quality metrics, security scan results, complexity analysis, and the overall code quality score generated using Pylint, Bandit, and Radon.
+
+![Code Analysis Dashboard](screenshots/dashboard.png)
+
+---
+
+### 🤖 AI Code Review
+
+AI-powered review generated using **Gemini AI**, providing code improvement suggestions, best practices, and refactored code recommendations to enhance code quality.
+
+![AI Code Review](screenshots/ai_review.png)
+
+---
+
+### 📄 Downloadable PDF Report
+
+Generate and download a professional PDF report containing code analysis results, AI insights, security findings, and actionable recommendations.
+
+![PDF Report](screenshots/pdf_report.png)
+
 ## 🛠️ Tech Stack
 
 - Python
