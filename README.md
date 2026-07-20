@@ -34,7 +34,7 @@ A modern and intuitive landing page showcasing the AI Code Review Assistant with
 
 Comprehensive dashboard displaying code quality metrics, security scan results, complexity analysis, and the overall code quality score generated using Pylint, Bandit, and Radon.
 
-![Code Analysis Dashboard](screenshots/dashboard.png)
+![Code Analysis Dashboard](screenshots/dashboard_1.png)
 
 ---
 
