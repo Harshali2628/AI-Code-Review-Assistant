@@ -1,56 +1,24 @@
-## 🔗 Links
-
-- **Live Demo:** https://ai-code-review-assistant-7dwvew6j4ebfvk8mb6avhb.streamlit.app/
-- **GitHub Repository:** https://github.com/Harshali2628/AI-Code-Review-Assistant
-
 # 🤖 AI Code Review Assistant
 
-An AI-powered code review application that analyzes Python code using static analysis tools and Gemini AI. The application provides code quality insights, security analysis, complexity metrics, AI-generated reviews, refactored code suggestions, and downloadable PDF reports.
+An AI-powered Python Code Review Assistant built with **Streamlit** and **Google Gemini AI**. The application performs static code analysis, security scanning, AI-powered code review, AI refactoring, automatic PyTest generation, test execution, and PDF report generation through an interactive dashboard.
+
+---
 
 ## 🚀 Features
 
-- ✅ Python Syntax Validation
-- ✅ Code Quality Analysis using Pylint
-- ✅ Security Analysis using Bandit
-- ✅ Code Complexity Analysis using Radon
-- ✅ AI-Powered Code Review (Gemini)
-- ✅ AI Refactored Code Suggestions
-- ✅ AI Test Case Generation
-- ✅ Overall Code Quality Score
-- ✅ Downloadable PDF Report
-- ✅ Interactive Streamlit Dashboard
-
-## 📸 Application Screenshots
-
-### 🏠 Home Page
-
-A modern and intuitive landing page showcasing the AI Code Review Assistant with an overview of supported features and an easy-to-use interface.
-
-![Home Page](screenshots/home.png)
+- 📂 Upload Python (.py) files
+- ✅ Syntax Validation
+- 🔍 Static Code Analysis using Pylint
+- 🛡️ Security Scanning using Bandit
+- 📈 Cyclomatic Complexity Analysis using Radon
+- 🤖 AI Code Review using Gemini AI
+- ✨ AI-Based Code Refactoring
+- 🧪 AI-Generated PyTest Test Cases
+- ▶️ Automatic PyTest Execution
+- 📄 Professional PDF Report Generation
+- 📊 Interactive Dashboard
 
 ---
-
-### 📊 Code Analysis Dashboard
-
-Comprehensive dashboard displaying code quality metrics, security scan results, complexity analysis, and the overall code quality score generated using Pylint, Bandit, and Radon.
-
-![Code Analysis Dashboard](screenshots/dashboard_1.png)
-
----
-
-### 🤖 AI Code Review
-
-AI-powered review generated using **Gemini AI**, providing code improvement suggestions, best practices, and refactored code recommendations to enhance code quality.
-
-![AI Code Review](screenshots/ai_review.png)
-
----
-
-### 📄 Downloadable PDF Report
-
-Generate and download a professional PDF report containing code analysis results, AI insights, security findings, and actionable recommendations.
-
-![PDF Report](screenshots/pdf_report.png)
 
 ## 🛠️ Tech Stack
 
@@ -60,64 +28,85 @@ Generate and download a professional PDF report containing code analysis results
 - Pylint
 - Bandit
 - Radon
+- PyTest
 - ReportLab
-- HTML/CSS
+
+---
 
 ## 📂 Project Structure
 
 ```text
 AI-Code-Review-Assistant/
 │── app.py
+│── uploads/
+│── utils/
+│── reports/
+│── assets/
+│── screenshots/
 │── requirements.txt
 │── README.md
-│── .gitignore
-│
-├── assets/
-│
-├── screenshots/
-│
-├── sample_codes/
-│
-├── utils/
-│
-└── reports/                  # Generated PDF reports (created at runtime)
 ```
+
+---
 
 ## ⚙️ Installation
 
 ```bash
 git clone https://github.com/Harshali2628/AI-Code-Review-Assistant.git
+
 cd AI-Code-Review-Assistant
+
 pip install -r requirements.txt
-```
 
-Create a `.env` file:
-
-```
-GEMINI_API_KEY=YOUR_API_KEY
-```
-
-Run the application:
-
-```bash
 streamlit run app.py
 ```
 
-## 📊 Output
+---
 
-The application generates:
+## 📸 Screenshots
 
-- Code Quality Report
-- Security Report
-- Complexity Analysis
+Add screenshots of:
+
+- Home Page
+- Dashboard
 - AI Review
-- Refactored Code
-- Test Cases
 - PDF Report
+
+Example:
+
+```markdown
+![Home](screenshots/home.png)
+
+![Dashboard](screenshots/dashboard_1.png)
+
+![AI Review](screenshots/ai_review.png)
+
+![PDF Report](screenshots/pdf_report.png)
+```
+
+---
+
+## 📈 Future Enhancements
+
+- Multi-language code support
+- Docker Deployment
+- GitHub Repository Integration
+- CI/CD Integration
+- Code Quality Trend Dashboard
+- Team Collaboration Features
+
+---
 
 ## 👩‍💻 Author
 
 **Harshali Panchal**
 
-Final Year CSE (AI & ML)
-VIT Bhopal University
+GitHub: https://github.com/Harshali2628
+
+LinkedIn: https://www.linkedin.com/in/harshali-panchal-771b6324a
+
+---
+
+## ⭐ If you like this project
+
+Give this repository a ⭐ on GitHub.
