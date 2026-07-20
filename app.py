@@ -14,11 +14,13 @@ from utils.radon_helper import extract_complexity_grade
 from utils.ai_reviewer import (
     review_code,
     refactor_code,
-    generate_test_cases
+    generate_unit_tests
 )
 from utils.report_generator import generate_pdf_report
 from utils.score_helper import calculate_overall_score
 import os
+from utils.pytest_runner import save_test_file, run_pytest
+
 
 with open("assets/styles.css") as f:
     st.markdown(
@@ -49,7 +51,26 @@ with st.sidebar:
 
     st.checkbox("AI Review", value=True, disabled=True)
 
-    st.checkbox("PyTest Generator", value=False, disabled=True)
+    st.checkbox("PyTest Generator", value=True, disabled=True)
+
+    st.markdown("---")
+
+    st.write("### About")
+
+    st.info(
+        """
+        🤖 AI-powered Python Code Review Assistant
+
+        **Features**
+        • Syntax Validation
+        • Static Analysis
+        • Security Scan
+        • AI Code Review
+        • AI Refactoring
+        • AI Unit Test Generation
+        • PDF Report Generation
+        """
+    )
 
 st.markdown(
     """
@@ -85,6 +106,7 @@ uploaded_file = st.file_uploader(
 if uploaded_file:
 
     file_path = save_uploaded_file(uploaded_file)
+    st.write(file_path)
 
     st.success(f"✅ Uploaded: {uploaded_file.name}")
 
@@ -136,9 +158,14 @@ if uploaded_file:
     if "radon_result" not in st.session_state:
         st.session_state.radon_result = ""
 
-    if "complexity_grade" not in st.session_state:
-        st.session_state.complexity_grade = ""
+    if "test_status" not in st.session_state:
+        st.session_state.test_status = "Not Run"
 
+    if "pytest_success" not in st.session_state:
+        st.session_state.pytest_success = None
+
+    if "pytest_output" not in st.session_state:
+        st.session_state.pytest_output = ""
 
     analysis_tab1, analysis_tab2, analysis_tab3, analysis_tab4 = st.tabs(
         [
@@ -215,24 +242,30 @@ if uploaded_file:
         with st.expander("📄 View Complexity Report"):
             st.code(st.session_state.radon_result)
 
-    overall_score = calculate_overall_score(
-        st.session_state.pylint_score,
-        message,
-        st.session_state.bandit_result,
-        st.session_state.complexity_grade,
-    )
 
+    
     security_status = (
         "Passed ✅"
         if "No issues" in st.session_state.bandit_result
         else "Warnings ⚠"
     )
 
+    overall_score = calculate_overall_score(
+        st.session_state.pylint_score,
+        message,
+        st.session_state.bandit_result,
+        st.session_state.complexity_grade,
+        st.session_state.test_status,
+    )
+
+
+
     display_summary_cards(
         overall_score,
         st.session_state.pylint_score,
         security_status,
         st.session_state.complexity_grade,
+        st.session_state.test_status,
     )
 
     ai_tab1, ai_tab2, ai_tab3 = st.tabs(
@@ -294,20 +327,56 @@ if uploaded_file:
 
     with ai_tab3:
 
-        if st.button("🧪 Generate Test Cases", key="testcase_btn"):
+        if st.button("🧪 Generate Unit Tests", key="testcase_btn"):
 
-            with st.spinner("Generating Test Cases..."):
+            with st.spinner("Generating PyTest Test Cases..."):
 
-                st.session_state.test_cases = generate_test_cases(code)
+                module_name = os.path.splitext(uploaded_file.name)[0]
+
+                st.session_state.test_cases = generate_unit_tests(
+                    code,
+                    module_name
+                )
+
+                test_file = save_test_file(st.session_state.test_cases)
+
+                success, output = run_pytest(test_file)
+
+                st.session_state.pytest_success = success
+                st.session_state.pytest_output = output
+
+                if success:
+                    st.session_state.test_status = "Passed ✅"
+                else:
+                    st.session_state.test_status = "Failed ❌"
+                st.rerun()
 
         if st.session_state.test_cases:
 
-            st.markdown(st.session_state.test_cases)
+            
+
+            st.subheader("Generated PyTest Code")
+
+            st.code(
+                st.session_state.test_cases,
+                language="python"
+            )
+
+            st.markdown("---")
+            st.subheader("🧪 PyTest Execution Result")
+
+            if st.session_state.pytest_success:
+                st.success("✅ All tests passed!")
+            else:
+                st.error("❌ Some tests failed!")
+
+            st.code(st.session_state.pytest_output)
 
             st.download_button(
-                "📥 Download Test Cases",
+                "📥 Download Unit Tests",
                 st.session_state.test_cases,
-                file_name="test_cases.md"
+                file_name="test_generated.py",
+                mime="text/x-python"
             )
     progress_bar.progress(100)
     status_placeholder.success("🎉 Analysis Completed Successfully!")
@@ -332,6 +401,8 @@ if uploaded_file:
             ai_review=st.session_state.ai_review,
             refactored_code=st.session_state.refactored_code,
             test_cases=st.session_state.test_cases,
+            test_status=st.session_state.test_status,
+            pytest_output=st.session_state.pytest_output,
         )
 
         with open("reports/code_review_report.pdf", "rb") as pdf_file:

@@ -220,6 +220,44 @@ def add_test_cases(elements, test_cases):
 
     elements.append(Spacer(1, 15))
 
+def add_pytest_results(elements, test_status, pytest_output):
+
+    elements.append(
+        Paragraph(
+            "🧪 PYTEST EXECUTION RESULT",
+            heading_style,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            f"<b>Status:</b> {test_status}",
+            body_style,
+        )
+    )
+
+    elements.append(Spacer(1, 8))
+
+    if pytest_output.strip():
+
+        elements.append(
+            Preformatted(
+                pytest_output,
+                body_style,
+            )
+        )
+
+    else:
+
+        elements.append(
+            Paragraph(
+                "PyTest was not executed.",
+                body_style,
+            )
+        )
+
+    elements.append(Spacer(1, 15))
+
 # -------------------------------------------------------
 # Footer
 # -------------------------------------------------------
@@ -251,7 +289,8 @@ def generate_pdf_report(
     ai_review,
     refactored_code,
     test_cases,
-
+    test_status,
+    pytest_output,
 ):
 
     pdf = SimpleDocTemplate(filename)
@@ -329,6 +368,7 @@ def generate_pdf_report(
         syntax_message,
         bandit_report,
         complexity_grade,
+        test_status,
     )
     if overall_score >= 90:
         health = "Excellent"
@@ -470,6 +510,12 @@ def generate_pdf_report(
     add_test_cases(
         elements,
         test_cases,
+    )
+
+    add_pytest_results(
+        elements,
+        test_status,
+        pytest_output,
     )
 
     elements.append(

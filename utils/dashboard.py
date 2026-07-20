@@ -36,9 +36,10 @@ def display_summary_cards(
     pylint_score,
     security_status,
     complexity_grade,
+    test_status,
 ):
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
 
     with col1:
         metric_card(
@@ -66,6 +67,13 @@ def display_summary_cards(
             "📈 Complexity",
             complexity_grade,
             PURPLE_COLOR,
+        )
+
+    with col5:
+        metric_card(
+            "🧪 Unit Testing",
+            test_status,
+            SUCCESS_COLOR if "Passed" in test_status else DANGER_COLOR,
         )
 
 def metric_card(title, value, color):

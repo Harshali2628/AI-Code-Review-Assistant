@@ -8,36 +8,66 @@ def calculate_overall_score(
     syntax_message,
     bandit_report,
     complexity_grade,
+    test_status="Not Run",
 ):
-    score = 100
+    score = 0
 
-    # Syntax
-    if "Error" in syntax_message:
-        score -= 30
+    # --------------------------
+    # Syntax (20 Marks)
+    # --------------------------
+    if "Error" not in syntax_message:
+        score += 20
 
-    # Pylint
+    # --------------------------
+    # Pylint (25 Marks)
+    # --------------------------
     try:
-        score -= max(0, (10 - float(pylint_score))) * 3
+        pylint = float(pylint_score)
+        score += round((pylint / 10) * 25)
     except:
         pass
 
-    # Security
-    if "No issues" not in bandit_report:
-        score -= 15
+    # --------------------------
+    # Security (20 Marks)
+    # --------------------------
+    if "No issues" in bandit_report:
+        score += 20
 
-    # Complexity
-    complexity_penalty = {
-        "A": 0,
-        "B": 5,
+    # --------------------------
+    # Complexity (15 Marks)
+    # --------------------------
+    complexity_marks = {
+        "A": 15,
+        "B": 13,
         "C": 10,
-        "D": 15,
-        "E": 20,
-        "F": 25,
+        "D": 7,
+        "E": 4,
+        "F": 2,
     }
 
-    score -= complexity_penalty.get(complexity_grade, 10)
+    score += complexity_marks.get(complexity_grade, 0)
 
-    return max(0, round(score))
+    # --------------------------
+    # Unit Testing (20 Marks)
+    # --------------------------
+        # --------------------------
+    # Unit Testing (20 Marks)
+    # --------------------------
+    if "Passed" in test_status:
+        score += 20
+    elif "Failed" in test_status:
+        score += 5
+
+    print("========== SCORE DEBUG ==========")
+    print("Syntax:", syntax_message)
+    print("Pylint:", pylint_score)
+    print("Bandit contains 'No issues':", "No issues" in bandit_report)
+    print("Complexity:", complexity_grade)
+    print("Test Status:", repr(test_status))
+    print("Score Before Return:", score)
+    print("=================================")
+
+    return min(100, round(score))
 
 def generate_recommendations(
     syntax_message,

@@ -2,6 +2,7 @@ import os
 import google.generativeai as genai
 from dotenv import load_dotenv
 
+
 # Load environment variables
 load_dotenv()
 
@@ -107,3 +108,46 @@ Code:
     response = model.generate_content(prompt)
 
     return response.text
+
+def generate_unit_tests(code, module_name):
+    prompt = f"""
+You are an expert Python developer.
+
+Generate professional PyTest unit tests.
+
+Rules:
+1. Return ONLY executable Python code.
+2. Do NOT use markdown.
+3. Do NOT explain anything.
+4. Do NOT rewrite the original functions.
+5. Import all required functions from:
+
+from uploads.{module_name} import *
+
+
+6. Use pytest.
+7. Cover normal cases.
+8. Cover edge cases.
+9. Use meaningful test function names.
+
+Python Code:
+
+{code}
+"""
+
+    response = model.generate_content(prompt)
+
+    cleaned_code = (
+        response.text
+        .replace("```python", "")
+        .replace("```", "")
+    )
+
+    # Remove any invalid control-like tokens
+    cleaned_lines = []
+    for line in cleaned_code.splitlines():
+        if line.strip().startswith("<") and line.strip().endswith(">"):
+            continue
+        cleaned_lines.append(line)
+
+    return "\n".join(cleaned_lines).strip()
