@@ -1,5 +1,12 @@
 # 🤖 AI Code Review Assistant
 
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red?logo=streamlit)
+![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker)
+![Gemini AI](https://img.shields.io/badge/Google-Gemini_AI-4285F4?logo=google)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Active-success)
+
 An AI-powered Python Code Review Assistant built using **Streamlit** and **Google Gemini AI**. The application automates code analysis by performing syntax validation, static analysis, security scanning, complexity analysis, AI-powered code review, AI-based refactoring, automatic PyTest generation, test execution, and professional PDF report generation.
 
 ---
