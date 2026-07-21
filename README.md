@@ -97,6 +97,21 @@ streamlit run app.py
 
 ---
 
+## 🐳 Docker
+
+### Build
+
+```bash
+docker build -t ai-code-review-assistant .
+```
+
+### Run
+
+```bash
+docker run -p 8501:8501 --env-file .env ai-code-review-assistant
+```
+---
+
 ## 📸 Screenshots
 
 ### Home Page
@@ -148,14 +163,18 @@ PDF Report Generation
 
 ---
 
-## 🎯 Future Improvements
+## 🚀 Future Improvements
 
-- Java & C++ Support
-- Docker Deployment
-- GitHub Repository Integration
-- CI/CD Pipeline
-- Multi-file Project Analysis
-- Team Collaboration
+- 🔹 Support multiple programming languages such as Java, C++, JavaScript, and Go.
+- 🔹 Integrate GitHub API to review pull requests and repositories directly.
+- 🔹 Add CI/CD integration with GitHub Actions for automated code analysis.
+- 🔹 Provide code quality trends and historical analytics through interactive dashboards.
+- 🔹 Support multiple AI models (OpenAI, Claude, Llama, and Gemini) with model selection.
+- 🔹 Implement user authentication and personalized review history.
+- 🔹 Deploy the application on cloud platforms such as AWS, Azure, or Google Cloud.
+- 🔹 Generate downloadable reports in multiple formats (PDF, HTML, and DOCX).
+- 🔹 Add team collaboration features with comments and review sharing.
+- 🔹 Improve performance using asynchronous processing for large codebases.
 
 ---
 
