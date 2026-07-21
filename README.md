@@ -49,13 +49,17 @@ An AI-powered Python Code Review Assistant built using **Streamlit** and **Googl
 AI-Code-Review-Assistant/
 │
 ├── app.py
+├── Dockerfile
+├── .dockerignore
 ├── requirements.txt
 ├── README.md
+├── LICENSE
 │
 ├── assets/
 ├── reports/
 ├── screenshots/
 ├── uploads/
+│
 └── utils/
     ├── ai_reviewer.py
     ├── dashboard.py
@@ -135,38 +139,55 @@ docker run -p 8501:8501 --env-file .env ai-code-review-assistant
 
 ---
 
-## 🔄 Workflow
+## 🏗️ System Architecture
 
 ```text
-Upload Python File
-        │
-        ▼
-Syntax Validation
-        │
-        ▼
-Pylint Analysis
-        │
-        ▼
-Bandit Security Scan
-        │
-        ▼
-Radon Complexity Analysis
-        │
-        ▼
-AI Code Review
-        │
-        ▼
-AI Refactoring
-        │
-        ▼
-AI Unit Test Generation
-        │
-        ▼
-PyTest Execution
-        │
-        ▼
-PDF Report Generation
+                          ┌─────────────────────┐
+                          │       User          │
+                          └──────────┬──────────┘
+                                     │
+                                     ▼
+                        ┌────────────────────────┐
+                        │     Streamlit UI       │
+                        │ (File Upload & Inputs) │
+                        └──────────┬─────────────┘
+                                   │
+            ┌──────────────────────┼──────────────────────┐
+            ▼                      ▼                      ▼
+ ┌─────────────────┐    ┌──────────────────┐   ┌──────────────────┐
+ │ Syntax Checker  │    │ Static Analysis  │   │ Gemini AI Review │
+ │                 │    │ • Pylint         │   │ • Code Review    │
+ │                 │    │ • Bandit         │   │ • Refactoring    │
+ │                 │    │ • Radon          │   │ • Suggestions    │
+ └────────┬────────┘    └────────┬─────────┘   └────────┬─────────┘
+          │                      │                      │
+          └──────────────────────┼──────────────────────┘
+                                 ▼
+                   ┌────────────────────────────┐
+                   │   Score & Report Generator │
+                   │  • Quality Score           │
+                   │  • Security Score          │
+                   │  • Complexity Score        │
+                   │  • PDF Report              │
+                   └─────────────┬──────────────┘
+                                 │
+                                 ▼
+                  ┌─────────────────────────────┐
+                  │ Interactive Dashboard       │
+                  │ • Metrics                   │
+                  │ • Charts                    │
+                  │ • Download PDF Report       │
+                  └─────────────────────────────┘
 ```
+
+### Workflow
+
+1. The user uploads a Python source code file through the Streamlit interface.
+2. The application validates the code using the syntax checker.
+3. Static analysis tools (Pylint, Bandit, and Radon) evaluate code quality, security vulnerabilities, and complexity.
+4. Google Gemini AI generates an intelligent code review, refactoring suggestions, and improvement recommendations.
+5. The system combines all analysis results to calculate quality metrics and generate a comprehensive PDF report.
+6. The interactive dashboard displays the analysis results and allows users to download the generated report.
 
 ---
 
