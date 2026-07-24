@@ -11,6 +11,12 @@ An AI-powered Python Code Review Assistant built using **Streamlit** and **Googl
 
 ---
 
+## 🚀 Live Demo
+
+🔗 [https://ai-code-review-assistant-7dwvew6j4ebfvk8mb6avhb.streamlit.app/]
+
+---
+
 ## 🚀 Features
 
 - 📂 Upload Python (.py) source files
