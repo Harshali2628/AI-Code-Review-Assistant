@@ -20,6 +20,7 @@ from utils.report_generator import generate_pdf_report
 from utils.score_helper import calculate_overall_score
 import os
 from utils.pytest_runner import save_test_file, run_pytest
+import requests
 
 
 with open("assets/styles.css") as f:
@@ -283,8 +284,22 @@ if uploaded_file:
 
         if st.button("Generate AI Review", key="review_btn"):
 
-            with st.spinner("Analyzing code with Gemini AI..."):
-                st.session_state.ai_review = review_code(code)
+            with st.spinner("Analyzing code with FastAPI + Gemini AI..."):
+
+                try:
+                    response = requests.post(
+                        "http://127.0.0.1:8000/review",
+                        json={"code": code},
+                        timeout=120
+                    )
+
+                    if response.status_code == 200:
+                        st.session_state.ai_review = response.json()["review"]
+                    else:
+                        st.error("FastAPI Error")
+
+                except Exception as e:
+                    st.error(f"Connection Error: {e}")
 
         if st.session_state.ai_review:
 
