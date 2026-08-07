@@ -1,7 +1,6 @@
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
-from utils.ai_reviewer import review_code
 
 
 # Load environment variables
