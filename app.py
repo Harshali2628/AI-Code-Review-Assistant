@@ -30,19 +30,19 @@ with open("assets/styles.css") as f:
     )
 
 st.set_page_config(
-    page_title="AI Code Review Assistant",
-    page_icon="🤖",
-    layout="wide"
+    page_title="CodeSentinel",
+    page_icon="🛡️",
+    layout="wide",
 )
 
 with st.sidebar:
-    st.title("🤖 AI Code Review")
+    st.sidebar.title("🛡️ CodeSentinel")
     st.markdown("---")
 
     st.write("### Version")
-    st.success("v1.0")
+    st.success("CodeSentinel v1.0")
 
-    st.write("### Features")
+    st.write("### Core Capabilities")
 
     st.checkbox("Upload Python File", value=True, disabled=True)
 
@@ -60,7 +60,7 @@ with st.sidebar:
 
     st.info(
         """
-        🤖 AI-powered Python Code Review Assistant
+        🛡️ CodeSentinel
 
         **Features**
         • Syntax Validation
@@ -76,27 +76,27 @@ with st.sidebar:
 st.markdown(
     """
     <div class="main-header">
-        <h1>🤖 AI Code Review Assistant</h1>
-        <p>Professional Static Analysis • Security Review • Gemini AI Insights</p>
+        <h1>🛡️ CodeSentinel</h1>
+        <p>Intelligent Code Analysis • Security Scanning • AI-Powered Code Review</p>
     </div>
     """,
     unsafe_allow_html=True,
 )
 st.markdown("""
-Upload a **Python (.py)** file to receive:
+Upload a Python (.py) source file to perform:
 
 - 🤖 AI Code Review
 - 🔍 Static Analysis
 - 🛡️ Security Scan
 - 📈 Complexity Analysis
-- ✅ Unit Test Generation
-- 📄 Downloadable Report
+- ✅ Automated Unit Test Generation
+- 📄 Professional PDF Report
 """)
 
 st.markdown("## 📂 Upload Python File")
 
 st.caption(
-    "Upload a Python (.py) file to perform syntax checking, static analysis, security scanning, AI review, and generate a professional PDF report."
+    "Upload a Python (.py) source file to perform comprehensive code analysis, AI-powered review, security scanning, complexity analysis, automated unit test generation, and professional PDF report creation."
 )
 
 uploaded_file = st.file_uploader(
@@ -115,7 +115,7 @@ if uploaded_file:
     status_placeholder = st.empty()
 
     st.markdown("---")
-    st.subheader("📄 File Details")
+    st.subheader("📂 Uploaded File Details")
 
     st.write(f"**File Name:** {uploaded_file.name}")
 
@@ -129,7 +129,7 @@ if uploaded_file:
 
     
     st.markdown("---")
-    st.subheader("💻 Uploaded Code")
+    st.subheader("💻 Source Code Preview")
 
     st.code(code, language="python")
 
@@ -177,7 +177,7 @@ if uploaded_file:
         ]
     )
 
-    status_placeholder.info("🔍 Checking Python Syntax...")
+    status_placeholder.info("🔍 Performing Syntax Validation...")
     progress_bar.progress(15)
 
     with analysis_tab1:
@@ -190,7 +190,7 @@ if uploaded_file:
             st.error(message)
             st.stop()
 
-    status_placeholder.info("📊 Running Static Analysis...")
+    status_placeholder.info("📊 Performing Static Code Analysis...")
     progress_bar.progress(30)
 
     with analysis_tab2:
@@ -210,7 +210,7 @@ if uploaded_file:
         with st.expander("📄 View Pylint Report"):
             st.code(st.session_state.pylint_result)
 
-    status_placeholder.info("🛡 Running Security Scan...")
+    status_placeholder.info("🛡️ Performing Security Analysis...")
     progress_bar.progress(45)
 
     with analysis_tab3:
@@ -224,7 +224,7 @@ if uploaded_file:
 
     st.markdown("---")
 
-    status_placeholder.info("📈 Calculating Code Complexity...")
+    status_placeholder.info("📈 Analyzing Code Complexity...")
     progress_bar.progress(60)
 
     with analysis_tab4:
@@ -277,29 +277,32 @@ if uploaded_file:
         ]
     )
 
-    status_placeholder.info("🤖 Generating AI Review...")
+    status_placeholder.info("🤖 Performing AI Code Review...")
     progress_bar.progress(75)
 
     with ai_tab1:
 
-        if st.button("Generate AI Review", key="review_btn"):
+        if st.button("🤖 Start AI Review", key="review_btn"):
 
-            with st.spinner("Analyzing code with FastAPI + Gemini AI..."):
+            with st.spinner("🤖 Performing AI Code Review..."):
 
                 try:
+                    # Try FastAPI first
                     response = requests.post(
                         "http://127.0.0.1:8000/review",
                         json={"code": code},
                         timeout=120
                     )
 
-                    if response.status_code == 200:
-                        st.session_state.ai_review = response.json()["review"]
-                    else:
-                        st.error("FastAPI Error")
+                    response.raise_for_status()
 
-                except Exception as e:
-                    st.error(f"Connection Error: {e}")
+                    st.session_state.ai_review = response.json()["review"]
+
+                except Exception:
+                    # Fallback to local Gemini review
+                    st.info("⚡ FastAPI not available. Using local Gemini AI...")
+
+                    st.session_state.ai_review = review_code(code)
 
         if st.session_state.ai_review:
 
@@ -313,12 +316,12 @@ if uploaded_file:
                 mime="text/plain"
             )
 
-    status_placeholder.info("✨ Refactoring Code with AI...")
+    status_placeholder.info("✨ Generating AI-Optimized Code...")
     progress_bar.progress(90)
 
     with ai_tab2:
 
-        if st.button("✨ Generate Refactored Code", key="refactor_btn"):
+        if st.button("✨ Generate Optimized Code", key="refactor_btn"):
 
             with st.spinner("Refactoring Code..."):
 
@@ -337,13 +340,12 @@ if uploaded_file:
                 file_name="refactored_code.py"
             )
 
-    status_placeholder.info("🧪 Generating AI Test Cases...")
+    status_placeholder.info("🧪 Generating Automated Unit Tests...")
     progress_bar.progress(95)     
 
     with ai_tab3:
 
-        if st.button("🧪 Generate Unit Tests", key="testcase_btn"):
-
+        if st.button("🧪 Generate PyTest Suite", key="testcase_btn"):
             with st.spinner("Generating PyTest Test Cases..."):
 
                 module_name = os.path.splitext(uploaded_file.name)[0]
@@ -394,14 +396,14 @@ if uploaded_file:
                 mime="text/x-python"
             )
     progress_bar.progress(100)
-    status_placeholder.success("🎉 Analysis Completed Successfully!")
+    status_placeholder.success("🎉 Code Analysis Completed Successfully!")
 
 
 
     st.markdown("---")
-    st.subheader("📄 PDF Report")
+    st.subheader("📄 Analysis Report")
 
-    if st.button("Generate PDF Report"):
+    if st.button("📄 Generate Analysis Report"):
     
 
         os.makedirs("reports", exist_ok=True)
@@ -425,7 +427,7 @@ if uploaded_file:
             st.download_button(
                 label="📥 Download PDF Report",
                 data=pdf_file,
-                file_name="AI_Code_Review_Report.pdf",
+                file_name="CodeSentinel_Analysis_Report.pdf",
                 mime="application/pdf"
             )
         
