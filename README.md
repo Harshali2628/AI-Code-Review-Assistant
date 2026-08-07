@@ -15,7 +15,7 @@ CodeSentinel is an AI-powered intelligent code review platform built using **Pyt
 
 ## 🌐 Live Demo
 
-🔗 [https://ai-code-review-assistant-7dwvew6j4ebfvk8mb6avhb.streamlit.app/]
+🔗 [https://codesentinel-ai.streamlit.app/]
 
 ---
 
