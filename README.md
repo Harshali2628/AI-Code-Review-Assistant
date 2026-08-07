@@ -1,7 +1,6 @@
 # 🛡️ CodeSentinel
 
-### AI-Powered Code Review Platform
-
+### AI-Powered Intelligent Code Review Platform
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-REST_API-009688?logo=fastapi)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red?logo=streamlit)
@@ -10,11 +9,11 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
-An AI-powered Python Code Review Assistant built using **Streamlit** and **Google Gemini AI**, with the AI review logic also exposed via a standalone **FastAPI REST API**. The application automates code analysis by performing syntax validation, static analysis, security scanning, complexity analysis, AI-powered code review, AI-based refactoring, automatic PyTest generation, test execution, and professional PDF report generation, all wrapped in an interactive **Streamlit** dashboard.
+CodeSentinel is an AI-powered intelligent code review platform built using **Python**, **Streamlit**, **FastAPI**, and **Google Gemini AI**. The platform automates syntax validation, static code analysis, security scanning, complexity analysis, AI-powered code review, intelligent refactoring suggestions, automated PyTest generation, test execution, and professional PDF report generation. It also exposes AI-powered code review functionality through a RESTful FastAPI service for seamless integration with external applications.
 
 ---
 
-## 🚀 Live Demo
+## 🌐 Live Demo
 
 🔗 [https://ai-code-review-assistant-7dwvew6j4ebfvk8mb6avhb.streamlit.app/]
 
@@ -24,36 +23,33 @@ An AI-powered Python Code Review Assistant built using **Streamlit** and **Googl
 
 - 📂 Upload Python (.py) source files
 - ✅ Syntax Validation
-- 🔍 Static Code Analysis using Pylint
-- 🛡️ Security Scanning using Bandit
-- 📈 Cyclomatic Complexity Analysis using Radon
-- 🤖 AI Code Review using Google Gemini AI
-- ✨ AI Code Refactoring
-- 🧪 AI-Generated Unit Test Creation
-- ▶️ Automatic PyTest Execution
+- 🔍 Static Code Analysis (Pylint)
+- 🛡️ Security Analysis (Bandit)
+- 📈 Code Complexity Analysis (Radon)
+- 🤖 AI-Powered Code Review using Google Gemini AI
+- ✨ Intelligent Code Refactoring
+- 🧪 Automated PyTest Generation
+- ▶️ Automatic Test Execution
 - 📊 Interactive Dashboard
-- 📄 PDF Report Generation
-- ⚡ **FastAPI REST API** (`api.py`) exposing the Gemini AI code review as a standalone `/review` endpoint
-- 📑 Auto-generated **Swagger / OpenAPI docs** (`/docs`) for the API
-- 🐳 Docker support for containerized deployment of both API and UI
-- 📁 Python file upload support
-- 📈 Interactive Streamlit dashboard
-
+- 📄 Professional PDF Report Generation
+- ⚡ RESTful FastAPI Integration
+- 📑 Interactive Swagger API Documentation
+- 🐳 Dockerized Deployment
 ---
 
 ## 🛠️ Tech Stack
 
 | Category | Technology |
 |-----------|------------|
-| Language | Python |
-| Backend / API | **FastAPI**, Uvicorn |
+| Programming Language | Python 3.11 |
 | Frontend | Streamlit |
-| AI Model | Google Gemini |
-| Static Analysis | Pylint |
-| Security | Bandit |
-| Complexity | Radon |
-| Testing | PyTest |
-| PDF | ReportLab |
+| Backend API | FastAPI |
+| AI Model | Google Gemini AI |
+| Static Code Analysis | Pylint |
+| Security Analysis | Bandit |
+| Complexity Analysis | Radon |
+| Unit Testing | PyTest |
+| PDF Generation | ReportLab |
 | Containerization | Docker |
 | Version Control | Git & GitHub |
 
@@ -270,19 +266,35 @@ docker run -p 8000:8000 --env-file .env ai-code-review-assistant uvicorn api:app
 
 ## 🚀 Future Improvements
 
-- 🔹 Support multiple programming languages such as Java, C++, JavaScript, and Go.
-- 🔹 Integrate GitHub API to review pull requests and repositories directly.
-- 🔹 Add CI/CD integration with GitHub Actions for automated code analysis.
-- 🔹 Provide code quality trends and historical analytics through interactive dashboards.
-- 🔹 Support multiple AI models (OpenAI, Claude, Llama, and Gemini) with model selection.
-- 🔹 Expand the FastAPI service with additional endpoints for static analysis, security scanning, complexity analysis, and PDF report generation.
-- 🔹 Implement user authentication and personalized review history (via FastAPI JWT auth).
-- 🔹 Add rate limiting and API key management for public FastAPI endpoints.
-- 🔹 Deploy the application on cloud platforms such as AWS, Azure, or Google Cloud.
-- 🔹 Generate downloadable reports in multiple formats (PDF, HTML, and DOCX).
-- 🔹 Add team collaboration features with comments and review sharing.
-- 🔹 Improve performance using asynchronous processing (FastAPI async endpoints) for large codebases.
+### 🤖 AI & Intelligent Analysis
+- 🔹 Transform the platform into a **Multi-Agent AI system** using **LangGraph**.
+- 🔹 Integrate **Retrieval-Augmented Generation (RAG)** using **Elasticsearch/OpenSearch** for context-aware code reviews.
+- 🔹 Support multiple AI models such as **Google Gemini, OpenAI GPT, Claude, and Llama** with dynamic model selection.
 
+### 💻 Platform Enhancements
+- 🔹 Support additional programming languages including **Java, C++, JavaScript, and Go**.
+- 🔹 Expand the **FastAPI** backend with endpoints for syntax validation, static analysis, security scanning, complexity analysis, and PDF report generation.
+- 🔹 Develop a comprehensive **REST API** for seamless third-party integrations.
+
+### 🔐 Security & User Management
+- 🔹 Implement **JWT-based authentication** and role-based access control.
+- 🔹 Add personalized dashboards with analysis history and report management.
+- 🔹 Introduce API key management and rate limiting for secure public API access.
+
+### ☁️ Cloud & DevOps
+- 🔹 Deploy the platform using **Docker** on **AWS**, **Azure**, or **Google Cloud Platform**.
+- 🔹 Implement **CI/CD pipelines** with **GitHub Actions** for automated testing and deployment.
+- 🔹 Store generated reports in cloud storage for centralized access.
+
+### 📊 Analytics & Collaboration
+- 🔹 Provide historical code quality analytics and trend visualization.
+- 🔹 Generate reports in multiple formats including **PDF**, **HTML**, and **DOCX**.
+- 🔹 Integrate with **GitHub** to analyze repositories and Pull Requests automatically.
+- 🔹 Enable team collaboration through shared workspaces, comments, and review history.
+
+### ⚡ Performance & Scalability
+- 🔹 Optimize the platform using **asynchronous FastAPI endpoints** for handling large codebases efficiently.
+- 🔹 Introduce background task processing and scalable architecture for enterprise-level workloads.
 ---
 
 ## 👩‍💻 Author
