@@ -1,4 +1,6 @@
-# 🤖 AI Code Review Assistant
+# 🛡️ CodeSentinel
+
+### AI-Powered Code Review Platform
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-REST_API-009688?logo=fastapi)
